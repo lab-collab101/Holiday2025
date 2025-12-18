@@ -1,0 +1,81 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Year‑End Holiday Trivia</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <canvas id="confetti" aria-hidden="true"></canvas>
+  <main id="app" class="fade-in">
+    <section id="screen-start" class="screen active" aria-labelledby="title">
+      <h1 id="title">🎄 Year‑End Holiday Trivia</h1>
+      <p class="subtitle">Interactive web game with music, animations & a 15‑second timer</p>
+      <div class="panel">
+        <label for="name">Player / Team name</label>
+        <input id="name" type="text" placeholder="e.g., Team Raleigh" maxlength="40" />
+      </div>
+      <div class="panel">
+        <label for="passcode">Pass code</label>
+        <input id="passcode" type="password" placeholder="Enter pass code" maxlength="40" />
+        <p class="hint">Organizer pass code required to start</p>
+      </div>
+      <details class="panel">
+        <summary>Game settings</summary>
+        <div class="settings-grid">
+          <label><input type="checkbox" id="musicToggle" checked /> Background music</label>
+          <label><input type="checkbox" id="sfxToggle" checked /> Sound effects</label>
+          <label>Timer
+            <select id="timerSelect">
+              <option value="15" selected>15 seconds</option>
+              <option value="20">20 seconds</option>
+              <option value="30">30 seconds</option>
+              <option value="60">60 seconds</option>
+            </select>
+          </label>
+          <label><input type="checkbox" id="shuffleToggle" /> Shuffle questions</label>
+        </div>
+      </details>
+      <button id="startBtn" class="btn primary">Start Game</button>
+      <p class="small">Tip: Share your screen in Teams/Zoom and turn on “Share system audio” for best sound.</p>
+    </section>
+
+    <section id="screen-quiz" class="screen" aria-live="polite" aria-atomic="true">
+      <header class="quiz-header">
+        <div class="progress-wrap">
+          <div id="timerBar" class="timer-bar"></div>
+          <div id="timerText" class="timer-text" aria-live="assertive">15</div>
+        </div>
+        <div class="meta">
+          <span id="qCounter">Q 1 / 20</span>
+          <span id="score">Score: 0</span>
+        </div>
+      </header>
+      <div id="questionWrap" class="question">
+        <h2 id="qText">Question text</h2>
+      </div>
+      <div id="answers" class="answers-grid" role="list">
+      </div>
+      <footer class="quiz-footer">
+        <button id="nextBtn" class="btn" disabled>Next</button>
+      </footer>
+    </section>
+
+    <section id="screen-end" class="screen" aria-labelledby="endTitle">
+      <h2 id="endTitle">🏁 Results</h2>
+      <p id="endSummary" class="summary"></p>
+      <div class="end-actions">
+        <button id="playAgainBtn" class="btn">Play again</button>
+        <button id="exportBtn" class="btn">Export results (CSV)</button>
+      </div>
+      <div class="leaderboard">
+        <h3>Local leaderboard</h3>
+        <ol id="leaderboardList"></ol>
+      </div>
+    </section>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
